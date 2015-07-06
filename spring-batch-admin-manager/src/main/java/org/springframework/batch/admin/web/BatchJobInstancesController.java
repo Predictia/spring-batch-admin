@@ -105,7 +105,7 @@ public class BatchJobInstancesController extends AbstractBatchJobsController {
 				result.add(new JobInstanceInfo(jobInstance, jobExecutions));
 			}
 
-			return assembler.toResource(new PageImpl<JobInstanceInfo>(result, pageable, total), jobInstanceInfoResourceAssembler);
+			return assembler.toResource(new PageImpl<JobInstanceInfo>(result, pageable, Math.max(result.size(), total)), jobInstanceInfoResourceAssembler);
 		}
 		catch (NoSuchJobException e) {
 			throw new NoSuchBatchJobException(jobName);

@@ -65,7 +65,7 @@ public class BatchFileController extends AbstractBatchJobsController {
 		List<FileInfo> files = fileService.getFiles(pageable.getOffset(), pageable.getPageSize());
 
 		return assembler.toResource(
-				new PageImpl<FileInfo>(files, pageable, fileService.countFiles()),
+				new PageImpl<FileInfo>(files, pageable, Math.max(files.size(), fileService.countFiles())),
 				fileInfoResourceAssembler);
 	}
 

@@ -15,7 +15,9 @@
  */
 package org.springframework.batch.admin.history;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
+import java.text.DecimalFormatSymbols;
 
 import org.junit.Test;
 import org.springframework.batch.admin.domain.CumulativeHistory;
@@ -32,11 +34,12 @@ public class CumulativeHistoryTests {
 
 	@Test
 	public void testString() {
+		char decimalSeparator = DecimalFormatSymbols.getInstance().getDecimalSeparator();
 		history.append(1);
 		history.append(2);
 		history.append(3);
 		assertEquals(
-				"[N=3, min=1.000000, max=3.000000, mean=2.000000, sigma=0.816497]",
+				"[N=3, min=1"+decimalSeparator+"000000, max=3"+decimalSeparator+"000000, mean=2"+decimalSeparator+"000000, sigma=0"+decimalSeparator+"816497]",
 				history.toString());
 	}
 
